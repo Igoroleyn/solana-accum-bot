@@ -88,7 +88,7 @@ async def my_tokens(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Основной запуск бота
 if __name__ == '__main__':
-    token = os.getenv("BOT_TOKEN")
+    token = os.getenv("7651487645:AAEb6KOCBRdbqCgVNBqPMu7wQQVdSmNNeJY")
 
     if not token or not token.startswith("1") or ":" not in token:
         print("❌ BOT_TOKEN не загружен или имеет неправильный формат!")
