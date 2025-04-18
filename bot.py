@@ -12,7 +12,7 @@ from telegram.ext import (
 )
 
 # Замените на свой Telegram user ID
-OWNER_ID = 123456789  # Укажите свой Telegram ID
+OWNER_ID = 5931049819  # Укажите свой Telegram ID
 
 # Токены по умолчанию
 tracked_tokens = {"SOL", "BONK", "WIF", "JUP", "SHDW"}
