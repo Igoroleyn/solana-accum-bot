@@ -1,5 +1,7 @@
-import os
-print(f"🔧 BOT_TOKEN переменная окружения: {os.environ.get('BOT_TOKEN')}")
+import sys
+print("👋 BOT STARTED", file=sys.stderr)
+token = "7651487645:AAEb6KOCBRdbqCgVNBqPMu7wQQVdSmNNeJY"
+print(f"🚀 TOKEN = {token}", file=sys.stderr)
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
