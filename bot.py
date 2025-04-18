@@ -1,4 +1,3 @@
-
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler
@@ -82,6 +81,13 @@ async def my_tokens(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Основной запуск бота
 if __name__ == '__main__':
     token = os.getenv("BOT_TOKEN")
+    if not token:
+        print("Bot token is missing!")
+        exit(1)
+
+    # Выведем токен в консоль для проверки
+    print(f"Bot Token: {token}")  # Это выведет токен в консоль
+
     app = ApplicationBuilder().token(token).build()
 
     app.add_handler(CommandHandler("start", start))
@@ -92,3 +98,4 @@ if __name__ == '__main__':
     app.add_handler(CallbackQueryHandler(set_language))
 
     app.run_polling()
+
