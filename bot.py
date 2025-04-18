@@ -81,7 +81,7 @@ async def my_tokens(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Основной запуск бота
 if __name__ == '__main__':
-    token = os.getenv("7651487645:AAEb6KOCBRdbqCgVNBqPMu7wQQVdSmNNeJY")
+    token = os.getenv("BOT_TOKEN")
     app = ApplicationBuilder().token(token).build()
 
     app.add_handler(CommandHandler("start", start))
