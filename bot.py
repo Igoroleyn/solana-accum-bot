@@ -1,17 +1,17 @@
 import sys
-print("👋 BOT STARTED", file=sys.stderr)
-token = "7651487645:AAEb6KOCBRdbqCgVNBqPMu7wQQVdSmNNeJY"
-print(f"🚀 TOKEN = {token}", file=sys.stderr)
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import (
-    ApplicationBuilder,
-    CommandHandler,
-    ContextTypes,
-    CallbackQueryHandler
-)
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler
 
-# Замените на свой Telegram user ID
+# Токен бота (замени на свой)
+token = "7651487645:AAEb6KOCBRdbqCgVNBqPMu7wQQVdSmNNeJY"
+print(f"🚀 BOT TOKEN = {token}", file=sys.stderr)  # Проверим вывод токена
+
+# Логгирование
+logging.basicConfig(level=logging.DEBUG)  # Устанавливаем уровень логирования на DEBUG
+logger = logging.getLogger(__name__)
+
+# Установи свой Telegram user ID
 OWNER_ID = 5931049819  # Укажите свой Telegram ID
 
 # Токены по умолчанию
@@ -20,10 +20,6 @@ tracked_tokens = {"SOL", "BONK", "WIF", "JUP", "SHDW"}
 # Языки
 LANGUAGES = {"ru": "Русский", "en": "English"}
 user_language = {}
-
-# Настройка логирования
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Команда /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -90,12 +86,6 @@ async def my_tokens(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Основной запуск бота
 if __name__ == '__main__':
-    token = os.getenv("7651487645:AAEb6KOCBRdbqCgVNBqPMu7wQQVdSmNNeJY")
-
-    if not token or not token.startswith("1") or ":" not in token:
-        print("❌ BOT_TOKEN не загружен или имеет неправильный формат!")
-        exit(1)
-
     print(f"✅ Токен загружен: {token[:10]}...")
 
     app = ApplicationBuilder().token(token).build()
