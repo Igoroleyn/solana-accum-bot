@@ -1,10 +1,15 @@
+import os
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler
-import os
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    ContextTypes,
+    CallbackQueryHandler
+)
 
-# Установи свой Telegram user ID тут
-OWNER_ID = 123456789  # заменишь на свой ID
+# Замените на свой Telegram user ID
+OWNER_ID = 123456789  # Укажите свой Telegram ID
 
 # Токены по умолчанию
 tracked_tokens = {"SOL", "BONK", "WIF", "JUP", "SHDW"}
@@ -13,7 +18,7 @@ tracked_tokens = {"SOL", "BONK", "WIF", "JUP", "SHDW"}
 LANGUAGES = {"ru": "Русский", "en": "English"}
 user_language = {}
 
-# Логгирование
+# Настройка логирования
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -30,8 +35,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Команда /language
 async def language(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [[InlineKeyboardButton("Русский", callback_data='lang_ru'),
-                 InlineKeyboardButton("English", callback_data='lang_en')]]
+    keyboard = [[
+        InlineKeyboardButton("Русский", callback_data='lang_ru'),
+        InlineKeyboardButton("English", callback_data='lang_en')
+    ]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text("Choose language / Выберите язык:", reply_markup=reply_markup)
 
@@ -81,12 +88,12 @@ async def my_tokens(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Основной запуск бота
 if __name__ == '__main__':
     token = os.getenv("BOT_TOKEN")
-    if not token:
-        print("Bot token is missing!")
+
+    if not token or not token.startswith("1") or ":" not in token:
+        print("❌ BOT_TOKEN не загружен или имеет неправильный формат!")
         exit(1)
 
-    # Выведем токен в консоль для проверки
-    print(f"Bot Token: {token}")  # Это выведет токен в консоль
+    print(f"✅ Токен загружен: {token[:10]}...")
 
     app = ApplicationBuilder().token(token).build()
 
@@ -97,5 +104,5 @@ if __name__ == '__main__':
     app.add_handler(CommandHandler("mytokens", my_tokens))
     app.add_handler(CallbackQueryHandler(set_language))
 
+    print("🚀 Бот запускается...")
     app.run_polling()
-
