@@ -1,4 +1,5 @@
 import os
+print(f"🔧 BOT_TOKEN переменная окружения: {os.environ.get('BOT_TOKEN')}")
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
